@@ -1,0 +1,174 @@
+# depslib dependency file v1.0
+1584852590 source:d:\project c++\nista\phonebook\src\login.cpp
+	"Login.h"
+
+1584780497 d:\project c++\nista\phonebook\include\login.h
+	<iostream>
+	<conio.h>
+	<fstream>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<iomanip>
+	<ctype.h>
+	<cstring>
+	<regex>
+	<algorithm>
+	"gotoxy.h"
+	"Person.h"
+	"adminPage.h"
+	"userPage.h"
+
+1584853215 source:d:\project c++\nista\phonebook\src\gotoxy.cpp
+	"gotoxy.h"
+
+1584847167 source:d:\project c++\nista\phonebook\source.cpp
+	<iostream>
+	"Login.h"
+	"Person.h"
+
+1584853220 d:\project c++\nista\phonebook\include\gotoxy.h
+	<iostream>
+	<windows.h>
+
+1584854014 d:\project c++\nista\phonebook\include\person.h
+	<iostream>
+	<conio.h>
+	<fstream>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<iomanip>
+	<ctype.h>
+	<cstring>
+	<algorithm>
+	"Capital.h"
+
+1584857047 source:d:\project c++\nista\phonebook\src\person.cpp
+	"Person.h"
+
+1584842935 d:\project c++\nista\phonebook\include\adminpage.h
+	"Phonebook.h"
+	"Login.h"
+	"Person.h"
+
+1584867150 d:\project c++\nista\phonebook\include\phonebook.h
+	<iostream>
+	<conio.h>
+	<fstream>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<iomanip>
+	<ctype.h>
+	<cstring>
+	<regex>
+	"gotoxy.h"
+	"Capital.h"
+
+1584844448 source:d:\project c++\nista\phonebook\src\adminpage.cpp
+	"adminPage.h"
+
+1584843240 d:\project c++\nista\phonebook\include\userpage.h
+	"Phonebook.h"
+	"Login.h"
+	"Person.h"
+
+1584867325 source:d:\project c++\nista\phonebook\src\phonebook.cpp
+	"Phonebook.h"
+
+1584844448 source:d:\project c++\nista\phonebook\src\userpage.cpp
+	"userPage.h"
+
+1584856194 d:\project c++\nista\phonebook\include\capital.h
+	<cstring>
+	<ctype.h>
+
+1584856195 source:d:\project c++\nista\phonebook\src\capital.cpp
+	"Capital.h"
+
+1588661803 source:d:\phonebook-master\source.cpp
+	<iostream>
+	"Login.h"
+	"Person.h"
+
+1588661803 d:\phonebook-master\include\login.h
+	<iostream>
+	<conio.h>
+	<fstream>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<iomanip>
+	<ctype.h>
+	<cstring>
+	<regex>
+	<algorithm>
+	"gotoxy.h"
+	"Person.h"
+	"adminPage.h"
+	"userPage.h"
+
+1588661803 d:\phonebook-master\include\gotoxy.h
+	<iostream>
+	<windows.h>
+
+1588665291 d:\phonebook-master\include\person.h
+	<iostream>
+	<conio.h>
+	<fstream>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<iomanip>
+	<ctype.h>
+	<cstring>
+	<algorithm>
+	"Capital.h"
+
+1588661803 d:\phonebook-master\include\capital.h
+	<cstring>
+	<ctype.h>
+
+1588661803 d:\phonebook-master\include\adminpage.h
+	"Phonebook.h"
+	"Login.h"
+	"Person.h"
+
+1588665375 d:\phonebook-master\include\phonebook.h
+	<iostream>
+	<conio.h>
+	<fstream>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<iomanip>
+	<ctype.h>
+	<cstring>
+	<regex>
+	"gotoxy.h"
+	"Capital.h"
+
+1588661803 d:\phonebook-master\include\userpage.h
+	"Phonebook.h"
+	"Login.h"
+	"Person.h"
+
+1588671576 source:d:\phonebook-master\src\adminpage.cpp
+	"adminPage.h"
+
+1588661803 source:d:\phonebook-master\src\gotoxy.cpp
+	"gotoxy.h"
+
+1588661803 source:d:\phonebook-master\src\login.cpp
+	"Login.h"
+
+1588665291 source:d:\phonebook-master\src\person.cpp
+	"Person.h"
+
+1588670586 source:d:\phonebook-master\src\phonebook.cpp
+	"Phonebook.h"
+
+1588661803 source:d:\phonebook-master\src\userpage.cpp
+	"userPage.h"
+
