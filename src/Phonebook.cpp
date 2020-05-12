@@ -6,9 +6,13 @@ char* Phonebook::getName()    //returns first name
 {
    return firstname;
 }
-char* Phonebook::getNumber()  //returns number
+char* Phonebook::getNumber()  //returns work number
 {
    return phone_number;
+}
+char* Phonebook::getHomeNum() //returns home number
+{
+    return homeNum;
 }
 char* Phonebook::getAddress()  //returns address
 {
@@ -25,6 +29,7 @@ int Phonebook::getIdNumber()
 void Phonebook::addData()
 {
         int l;
+        string num;
         cout<<"\nENTER YOUR NAME \n";
         cout<<"First name:";
         cin>>firstname;
@@ -35,17 +40,50 @@ void Phonebook::addData()
         cout<<"Address:";
         cin>>address;
         cin.ignore();
-        cout<<"Enter phone number:";
-        cin>>phone_number;
-        cin.ignore();
-        l=strlen(phone_number);
-        while(l!=10 || phone_number[0]!='9' || (phone_number[1]>='a' && phone_number[10]<='z') || (phone_number[1]>='A' && phone_number[10]<='Z'))
+        cout<<"Enter phone number: 1.Work \t 2.Home \t 3.Both :";
+        up:
+        cin>>num;
+        if(num=="1")
+        {
+         cout<<"Work:";
+         cin>>phone_number;
+         cin.ignore();
+         l=strlen(phone_number);
+         while(l!=10 || phone_number[0]!='9' || (phone_number[1]>='a' && phone_number[10]<='z') || (phone_number[1]>='A' && phone_number[10]<='Z'))
           {
             cout<<"You have entered wrong number!\n";
             cout<<"Re enter phone number:";
             cin>>phone_number;
             l=strlen(phone_number);
-
+          }
+          strcpy(homeNum,"---");
+        }
+         else if(num=="2")
+         {
+             cout<<"Home:";
+             cin>>homeNum;
+             strcpy(phone_number,"---");
+         }
+          else if(num=="3")
+          {
+              cout<<"Work:";
+              cin>>phone_number;
+         cin.ignore();
+         l=strlen(phone_number);
+         while(l!=10 || phone_number[0]!='9' || (phone_number[1]>='a' && phone_number[10]<='z') || (phone_number[1]>='A' && phone_number[10]<='Z'))
+          {
+            cout<<"You have entered wrong number!\n";
+            cout<<"Re enter phone number:";
+            cin>>phone_number;
+            l=strlen(phone_number);
+          }
+             cout<<"Home:";
+             cin>>homeNum;
+         }
+          else
+          {
+              cout<<"Choose the number from 1 to 3!!:";
+              goto up;
           }
           char cemail;
         cout<<"Do you have an email(y/n)?:";
@@ -83,7 +121,7 @@ void Phonebook::addData()
 void Phonebook::showData()
 {
     cout.setf(ios::left,ios::adjustfield);
-    cout<<setw(15)<<fullname<<setw(15)<<"\t"<<address<<setw(10)<<"\t"<<phone_number<<"\t"<<email<<endl;
+    cout<<setw(20)<<fullname<<setw(15)<<"\t"<<address<<setw(10)<<"\t"<<phone_number<<"\t\t"<<homeNum<<"\t\t"<<email<<endl;
 }
 
 void Phonebook::storeData()
@@ -215,7 +253,7 @@ void Phonebook::readData()
         cin>>phonenumber;
         while(fin.read((char*)this,sizeof(*this)))
     {
-        if(strcmp(phonenumber,getNumber())==0)
+        if((strcmp(phonenumber,getNumber())==0) || strcmp(phonenumber,getHomeNum())==0)
         {
             showData();
             flag++;
@@ -424,6 +462,7 @@ void Phonebook::readData()
         strcpy(chkname,getName());
         if (strcmp(name,capital(chkname))==0)
         {
+              string choosePhoneNo;
             char option;
             cout<<"\n The following record will be modified:\n";
             showData();
@@ -453,20 +492,52 @@ void Phonebook::readData()
                     cin.ignore();
                     break;
                 case '4':
-                    cout<<"Enter Phone Number:"<<endl;
-                   cin>>phone_number;
-        cin.ignore();
-        int l;
-        l=strlen(phone_number);
-        while(l!=10 || phone_number[0]!='9' || (phone_number[1]>='a' && phone_number[10]<='z') || (phone_number[1]>='A' && phone_number[10]<='Z'))
+                   int l;
+                    cout<<"Enter Phone Number: 1.Work \t 2.Home \t 3.Both :"<<endl;
+                   up:
+                   cin>>choosePhoneNo;
+                   if(choosePhoneNo=="1")
+                   {
+                     cout<<"Work:";
+                     cin>>phone_number;
+                   cin.ignore();
+                   l=strlen(phone_number);
+             while(l!=10 || phone_number[0]!='9' || (phone_number[1]>='a' && phone_number[10]<='z') || (phone_number[1]>='A' && phone_number[10]<='Z'))
+           {
+            cout<<"You have entered wrong number!\n";
+            cout<<"Re enter phone number:";
+            cin>>phone_number;
+            l=strlen(phone_number);
+           }
+           }
+        else if(choosePhoneNo=="2")
+         {
+             cout<<"Home:";
+             cin>>homeNum;
+             strcpy(phone_number,"---");
+         }
+          else if(choosePhoneNo=="3")
+          {
+              cout<<"Work:";
+              cin>>phone_number;
+         cin.ignore();
+         l=strlen(phone_number);
+         while(l!=10 || phone_number[0]!='9' || (phone_number[1]>='a' && phone_number[10]<='z') || (phone_number[1]>='A' && phone_number[10]<='Z'))
           {
             cout<<"You have entered wrong number!\n";
             cout<<"Re enter phone number:";
             cin>>phone_number;
             l=strlen(phone_number);
-
           }
-                    break;
+             cout<<"Home:";
+             cin>>homeNum;
+         }
+          else
+          {
+              cout<<"Choose the number from 1 to 3!!:";
+              goto up;
+          }
+                   break;
                      case '5':
                      cout<<"Enter email:";
                     while(1)

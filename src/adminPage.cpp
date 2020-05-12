@@ -72,7 +72,7 @@ void adminPage::homePage(char* name)
             gotoxy(0, 1);
              //cout<<setw(12)<<firstname<<setw(15)<<"\t"<<address<<setw(10)<<"\t"<<phone_number<<"\t"<<email<<endl;
              cout.setf(ios::left,ios::adjustfield);
-            cout << setw(12) << "Name" << setw(15) << "\t" << "Address" << setw(10) << "\t" << "Phone Number" << "\t" << "Email" << endl;
+            cout << setw(20) << "Name" << setw(15) << "\t" << "Address" << setw(10) << "\t" << "Phone no: Work"<<"\t\tHome" << "\t\t" << "Email" << endl;
             cout << "------------------------------------------------------------------------------------------------------------------------";
             readData();
             cout << "\n\n\t\t\t\t\tPress any key to continue";
@@ -159,7 +159,7 @@ void adminPage::homePage(char* name)
                  system("cls");
                 system("COLOR 3f");
                 Login lo;
-                lo.loginPage(); Login login1;
+                lo.loginPage();
             }
             else
             {
@@ -171,7 +171,7 @@ void adminPage::homePage(char* name)
 
         default:
             gotoxy(48, 20);
-            cout << "Choose a number between 1 and 4:";
+            cout << "Choose a number between 1 and 9:";
             _getch();
             break;
         }

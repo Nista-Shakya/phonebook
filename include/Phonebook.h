@@ -18,13 +18,14 @@ using namespace std;
 class Phonebook
 {
       protected:
-        char firstname[20],lastname[20],address[20],phone_number[11],email[30],fullname[25];
+        char firstname[20],lastname[20],address[20],phone_number[11],homeNum[10],email[30],fullname[25];
         int idNumber;
 
       public:
        Phonebook();
        char *getName();    //returns first name
-       char *getNumber();  //returns number
+       char *getNumber();  //returns work number
+       char *getHomeNum(); //returns home number
        char *getAddress();//returns address
        char *getFullName();//return full name
        int getIdNumber();//return id number
