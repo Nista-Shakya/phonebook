@@ -12,6 +12,7 @@
 #include<cstring>
 #include<regex>
 
+#include"utilities.h"
 #include"gotoxy.h"
 #include"Capital.h"
 using namespace std;

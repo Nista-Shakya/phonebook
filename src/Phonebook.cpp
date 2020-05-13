@@ -48,34 +48,30 @@ void Phonebook::addData()
          cout<<"Work:";
          cin>>phone_number;
          cin.ignore();
-         l=strlen(phone_number);
-         while(l!=10 || phone_number[0]!='9' || (phone_number[1]>='a' && phone_number[10]<='z') || (phone_number[1]>='A' && phone_number[10]<='Z'))
+         while(!phoneNumber_isvalid(phone_number))
           {
             cout<<"You have entered wrong number!\n";
             cout<<"Re enter phone number:";
             cin>>phone_number;
-            l=strlen(phone_number);
           }
-          strcpy(homeNum,"---");
+         strcpy(homeNum,"---");
         }
          else if(num=="2")
          {
              cout<<"Home:";
              cin>>homeNum;
-             strcpy(phone_number,"---");
+             strcpy(phone_number,"----------");
          }
           else if(num=="3")
           {
               cout<<"Work:";
               cin>>phone_number;
          cin.ignore();
-         l=strlen(phone_number);
-         while(l!=10 || phone_number[0]!='9' || (phone_number[1]>='a' && phone_number[10]<='z') || (phone_number[1]>='A' && phone_number[10]<='Z'))
+         while(!phoneNumber_isvalid(phone_number))
           {
             cout<<"You have entered wrong number!\n";
             cout<<"Re enter phone number:";
             cin>>phone_number;
-            l=strlen(phone_number);
           }
              cout<<"Home:";
              cin>>homeNum;
@@ -91,21 +87,12 @@ void Phonebook::addData()
         if(cemail=='y' || cemail=='Y')
         {
             cout<<"Enter email:";
-    while(1)
-       {
-        cin>>email;
-        cin.ignore();
-        regex emailCheck("(\\w+)(\\.|_|-|\\+|\\*|\\$|\\#|\\!|\\%|\\=)?(\\w*)@(gmail|yahoo|outlook|live|hotmail|aol|msn|rediffmail)+(\\.(com|org|gov|net|edu|int|mil|fr|state))+");
-        bool match=regex_match(email,emailCheck);  //attempts to match a regular expression to an entire character sequence
-        if(match)
+            cin>>email;
+    while(!email_isvalid(email))
         {
-            break;
-        }
-        else
-           {
              cout<<"Invalid Email\n";
              cout<<"Enter again:";
-           }
+             cin>>email;
         }
         }
         else
@@ -501,33 +488,29 @@ void Phonebook::readData()
                      cout<<"Work:";
                      cin>>phone_number;
                    cin.ignore();
-                   l=strlen(phone_number);
-             while(l!=10 || phone_number[0]!='9' || (phone_number[1]>='a' && phone_number[10]<='z') || (phone_number[1]>='A' && phone_number[10]<='Z'))
-           {
+            while(!phoneNumber_isvalid(phone_number))
+          {
             cout<<"You have entered wrong number!\n";
             cout<<"Re enter phone number:";
             cin>>phone_number;
-            l=strlen(phone_number);
-           }
+          }
            }
         else if(choosePhoneNo=="2")
          {
              cout<<"Home:";
              cin>>homeNum;
-             strcpy(phone_number,"---");
+             strcpy(phone_number,"----------");
          }
           else if(choosePhoneNo=="3")
           {
               cout<<"Work:";
               cin>>phone_number;
          cin.ignore();
-         l=strlen(phone_number);
-         while(l!=10 || phone_number[0]!='9' || (phone_number[1]>='a' && phone_number[10]<='z') || (phone_number[1]>='A' && phone_number[10]<='Z'))
+           while(!phoneNumber_isvalid(phone_number))
           {
             cout<<"You have entered wrong number!\n";
             cout<<"Re enter phone number:";
             cin>>phone_number;
-            l=strlen(phone_number);
           }
              cout<<"Home:";
              cin>>homeNum;
@@ -540,22 +523,13 @@ void Phonebook::readData()
                    break;
                      case '5':
                      cout<<"Enter email:";
-                    while(1)
-                       {
-                        cin>>email;
-                        cin.ignore();
-                        regex emailCheck("(\\w+)(\\.|_|-|\\+|\\*|\\$|\\#|\\!|\\%|\\=)?(\\w*)@(gmail|yahoo|outlook|live|hotmail|aol|msn|rediffmail)+(\\.(com|org|gov|net|edu|int|mil|fr|state))+");
-                        bool match=regex_match(email,emailCheck);  //attempts to match a regular expression to an entire character sequence
-                        if(match)
-                        {
-                            break;
-                        }
-                        else
-                           {
+                     cin>>email;
+                    while(!email_isvalid(email))
+                          {
                              cout<<"Invalid Email\n";
                              cout<<"Enter again:";
+                             cin>>email;
                            }
-                        }
                         break;
                 default:
                     cout<<"Choose number between 1 to 5";

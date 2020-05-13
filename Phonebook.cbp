@@ -39,6 +39,7 @@
 		<Unit filename="include/adminPage.h" />
 		<Unit filename="include/gotoxy.h" />
 		<Unit filename="include/userPage.h" />
+		<Unit filename="include/utilities.h" />
 		<Unit filename="source.cpp" />
 		<Unit filename="src/Login.cpp" />
 		<Unit filename="src/Person.cpp" />
@@ -46,6 +47,7 @@
 		<Unit filename="src/adminPage.cpp" />
 		<Unit filename="src/gotoxy.cpp" />
 		<Unit filename="src/userPage.cpp" />
+		<Unit filename="src/utilities.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
