@@ -16,11 +16,13 @@
 #include"gotoxy.h"
 #include"Capital.h"
 using namespace std;
+
 class Phonebook
 {
       protected:
         char firstname[20],lastname[20],address[20],phone_number[11],homeNum[10],email[30],fullname[25];
         int idNumber;
+
 
       public:
        Phonebook();
@@ -37,6 +39,7 @@ class Phonebook
        void searchData();  //searches for the matched data
        void deleteData();  //deletes the data from the file
        void editData();    //edits the data from the matched name
+       int totalDataEntry(); //total entry in the file
 
 };
 

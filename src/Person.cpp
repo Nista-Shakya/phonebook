@@ -40,7 +40,7 @@ void Person::addUser()
     cout<<"Enter password:";
     for (int i = 0;;)
     {
-        a = _getch();//stores char typed in a
+        a = getch();//stores char typed in a
         if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z') || (a >= '0' && a <= '9'))
             //check if a is numeric or alphabet
         {
@@ -65,7 +65,7 @@ void Person::addUser()
         fout.close();
         cout<<"\nRECORD SUCCESSFULLY ADDED!!!";
         cout<<"\nPress any key to continue";
-        _getch();
+        getch();
 }
 void Person::showUser()
 {
@@ -191,7 +191,7 @@ void Person::deleteUser()
         cout<<"User Deleted!!!"<<endl;
     }
     cout<<"Press any key to continue..";
-    _getch();
+    getch();
 }
 char* Person::getUserName()
 {

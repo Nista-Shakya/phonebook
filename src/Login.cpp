@@ -22,7 +22,7 @@ void Login::loginPage()
     cout << "PASSWORD:";
     for (int i = 0;;)
     {
-        a = _getch();//stores char typed in a
+        a = getch();//stores char typed in a
         if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z') || (a >= '0' && a <= '9'))
             //check if a is numeric or alphabet
         {
@@ -78,7 +78,7 @@ void Login::loginPage()
         cout << "Invalid Username or Password";
         gotoxy(40, 26);
         cout << "Do you want to continue? y/n:";
-        choose=getch();
+        cin>>choose;
         if (choose == 'y' || choose == 'Y')
         {
             system("cls");

@@ -6,10 +6,12 @@ userPage::userPage()
 }
 void userPage::homePage(char* name)
 {
-    char a;
+    int a;
+    int totEntry;
      while (1)
     {
         system("cls");
+        totEntry=totalDataEntry();
         system("COLOR 3f");
         gotoxy(0, 1);
         cout << "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*";
@@ -31,21 +33,31 @@ void userPage::homePage(char* name)
         gotoxy(50, 12);
         cout << "Enter a choice:";
         cin>>a;
+          while(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(32767,'\n');
+            cout<<"\n\t\t\t\t\t\tEnter a choice in integer:";
+            cin>>a;
+        }
          switch (a)
         {
-        case '1':
-            system("cls");
+        case 1:
+             system("cls");
             system("COLOR f5");
+            cout<<"Total Entry:"<<totEntry;
             gotoxy(0, 1);
-            cout.setf(ios::left,ios::adjustfield);
-            cout << setw(12) << "Name" << setw(15) << "\t" << "Address" << setw(10) << "\t" << "Phone Number" << "\t" << "Email" << endl;
+             //cout<<setw(12)<<firstname<<setw(15)<<"\t"<<address<<setw(10)<<"\t"<<phone_number<<"\t"<<email<<endl;
+             cout.setf(ios::left,ios::adjustfield);
+            cout << "------------------------------------------------------------------------------------------------------------------------";
+            cout << setw(20) << "Name" << setw(15) << "\t" << "Address" << setw(10) << "\t" << "Phone no: Work"<<"\t\tHome" << "\t\t" << "Email" << endl;
             cout << "------------------------------------------------------------------------------------------------------------------------";
             readData();
             cout << "\n\n\t\t\t\t\tPress any key to continue";
-            _getch();
+            getch();
             break;
 
-        case '2':
+        case 2:
             system("COLOR f5");
             system("cls");
             cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
@@ -61,6 +73,12 @@ void userPage::homePage(char* name)
                 cin>>cont;
                 if (cont == 'y' || cont == 'Y')
                 {
+                    system("cls");
+                    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+                    gotoxy(52, 1);
+                    cout << "SEARCH YOUR RECORD";
+                    gotoxy(0, 2);
+                    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
                     searchData();
                 }
                 else
@@ -69,9 +87,9 @@ void userPage::homePage(char* name)
                 }
             }
             cout << "\n\n\t\t\t\t\tPress any key to continue";
-            _getch();
+            getch();
             break;
-        case '3':
+        case 3:
            char log;
             gotoxy(40,15);
             cout<<"Are you sure you want to log out(y/n)?";
@@ -93,8 +111,8 @@ void userPage::homePage(char* name)
 
         default:
             gotoxy(44, 14);
-            cout << "Choose a number between 1 and 4:";
-            _getch();
+            cout << "Choose a number between 1 and 3:";
+            getch();
             break;
         }
 }

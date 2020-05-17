@@ -113,16 +113,25 @@ void Phonebook::showData()
 
 void Phonebook::storeData()
 {
-           ofstream fout;
+           int totalEntry=totalDataEntry();
+           if(totalEntry<MAX_ENTRY)
+           {ofstream fout;
            fout.open("phonebook2.txt",ios::out|ios::app|ios::binary);
            addData();
            fout.write((char*)this,sizeof(*this));
            fout.close();
            gotoxy(45,25);
            cout<<"RECORD SUCCESSFULLY ADDED!!!";
-           gotoxy(45,26);
+           }
+           else
+           {
+               gotoxy(45,4);
+               cout<<"Memory is full!!";
+           }
+           gotoxy(45,27);
            cout<<"Press any key to continue";
            _getch();
+
 }
 
 void Phonebook::readData()
@@ -199,11 +208,11 @@ void Phonebook::readData()
        fin.open("phonebook2.txt",ios::in);
        gotoxy(55,3);
        cout<<"Search by:";
-       gotoxy(24,4);
-       cout<<"------------------------------------------------------------------"<<endl;
-       cout<<"\t\t\t1.First name\t 2.Phone number\t   3.Address"<<endl;
-       gotoxy(24,6);
-       cout<<"------------------------------------------------------------------"<<endl;
+       gotoxy(28,4);
+       cout<<"------------------------------------------------------------"<<endl;
+       cout<<"\t\t\t\t1.First name\t 2.Phone number\t   3.Address"<<endl;
+       gotoxy(28,6);
+       cout<<"------------------------------------------------------------"<<endl;
        cout<<"Enter your choice:";
 
 
@@ -459,7 +468,7 @@ void Phonebook::readData()
             cout<<"3.Address"<<endl;
             cout<<"4.Phone Number"<<endl;
             cout<<"5.Email"<<endl;
-            cout<<"Enter choice:"<<endl;
+            cout<<"Enter choice:";
             cin>>option;
               switch(option)
             {
@@ -480,7 +489,7 @@ void Phonebook::readData()
                     break;
                 case '4':
                    int l;
-                    cout<<"Enter Phone Number: 1.Work \t 2.Home \t 3.Both :"<<endl;
+                    cout<<"Enter Phone Number: 1.Work \t 2.Home \t 3.Both :";
                    up:
                    cin>>choosePhoneNo;
                    if(choosePhoneNo=="1")
@@ -499,7 +508,6 @@ void Phonebook::readData()
          {
              cout<<"Home:";
              cin>>homeNum;
-             strcpy(phone_number,"----------");
          }
           else if(choosePhoneNo=="3")
           {
@@ -548,9 +556,23 @@ void Phonebook::readData()
     finout.close();
     if(flag>0)
     {
-        cout<<"Data Modified Successfully!!";
+        cout<<"\n\t\t\t\t\t\tData Modified Successfully!!";
     }
     if(flag==0)
-        cout<<"\n Record of the name is not in the file \n";
+        cout<<"\n\t\t\t\t\t Record of the name is not in the file!! \n";
      _getch();
+ }
+ int Phonebook::totalDataEntry()
+ {
+     ifstream fin;
+     int totalEntry=0;
+     fin.open("phonebook2.txt",ios::binary);
+     fin.read(reinterpret_cast<char*>(this),sizeof(*this));
+     while(!fin.eof())
+     {
+         fin.read(reinterpret_cast<char*>(this),sizeof(*this));
+         totalEntry++;
+     }
+    fin.close();
+    return totalEntry;
  }
