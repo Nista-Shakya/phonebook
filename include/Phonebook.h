@@ -32,13 +32,15 @@ class Phonebook
        char *getAddress();//returns address
        char *getFullName();//return full name
        int getIdNumber();//return id number
-       void addData();   //information to add data
+       void addData(int id);   //information to add data
        void showData();   //shows the added data
        void storeData();  //stores data into file by writing the data into the file
        void readData();   //reads the added data from the file
        void searchData();  //searches for the matched data
        void deleteData();  //deletes the data from the file
        void editData();    //edits the data from the matched name
+       void editData_copy(char* name,int id); //reduces repeated code for multiple names to edit data
+       int getId();        //return id number to get new id,also to get last id number from the file
        int totalDataEntry(); //total entry in the file
 
 };

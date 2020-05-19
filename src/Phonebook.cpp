@@ -26,7 +26,7 @@ int Phonebook::getIdNumber()
 {
     return idNumber;
 }
-void Phonebook::addData()
+void Phonebook::addData(int id)
 {
         int l;
         string num;
@@ -102,7 +102,7 @@ void Phonebook::addData()
             strcpy(fullname,firstname);
             strcat(fullname," ");
             strcat(fullname,lastname);
-            idNumber=rand()%1000+1;
+            idNumber=id;
 }
 
 void Phonebook::showData()
@@ -115,9 +115,12 @@ void Phonebook::storeData()
 {
            int totalEntry=totalDataEntry();
            if(totalEntry<MAX_ENTRY)
-           {ofstream fout;
+           {
+             int id;
+             id=getId();
+            ofstream fout;
            fout.open("phonebook2.txt",ios::out|ios::app|ios::binary);
-           addData();
+           addData(id);
            fout.write((char*)this,sizeof(*this));
            fout.close();
            gotoxy(45,25);
@@ -130,7 +133,7 @@ void Phonebook::storeData()
            }
            gotoxy(45,27);
            cout<<"Press any key to continue";
-           _getch();
+           getch();
 
 }
 
@@ -314,7 +317,6 @@ void Phonebook::readData()
          while(!fin.eof())
          {
              strcpy(chkname,getName());
-
                  if(strcmp(name,capital(chkname))==0)
                  {
                      cout<<"Id Number:"<<idNumber<<endl;
@@ -440,15 +442,88 @@ void Phonebook::readData()
          }
     }
 
+
  void Phonebook::editData()
  {
 
-    char name[20];
-    int flag=0;
+    int id;
+    char name[20],chkname[20];
+    int total_name=0;
     cout<<"Enter the name to modify:";
     cin>>name;
     strcpy(name,capital(name));
-    fstream finout;
+    ifstream fin;
+    fin.open("phonebook2.txt",ios::binary);
+    fin.read(reinterpret_cast<char*>(this),sizeof(*this));
+    while(!fin.eof())
+    {
+        strcpy(chkname,getName());
+        if (strcmp(name,capital(chkname))==0)
+        {
+            id=getIdNumber();
+            total_name++;
+        }
+        fin.read(reinterpret_cast<char*>(this),sizeof(*this));
+    }
+    fin.close();
+    if(total_name==1)
+    {
+        editData_copy(name,id);
+    }
+    else if(total_name>1)
+    {
+    ifstream fin1;
+    fin1.open("phonebook2.txt",ios::binary);
+    fin1.read(reinterpret_cast<char*>(this),sizeof(*this));
+    while(!fin1.eof())
+    {
+        strcpy(chkname,getName());
+        if (strcmp(name,capital(chkname))==0)
+        {
+            cout<<"Id Number:"<<idNumber<<endl;
+           showData();
+        }
+        fin1.read(reinterpret_cast<char*>(this),sizeof(*this));
+    }
+    fin1.close();
+             cout<<"Enter id number to edit:";
+             cin>>id;
+             while(cin.fail())
+             {
+                 cin.clear();
+                 cin.ignore(32767,'\n');
+                 cout<<"Re-enter id:";
+                 cin>>id;
+             }
+             ifstream fin2;
+             char user_name[20];
+    fin2.open("phonebook2.txt",ios::binary);
+    fin2.read(reinterpret_cast<char*>(this),sizeof(*this));
+                while(!fin2.eof())
+         {
+
+                 if(id==getIdNumber())
+                 {
+
+                     strcpy(user_name,getName());
+                     break;
+                 }
+
+                 fin2.read(reinterpret_cast<char*>(this),sizeof(*this));
+    }
+    fin2.close();
+    cout<<user_name;
+    strcpy(user_name,capital(user_name));
+    editData_copy(user_name,id);
+ }
+ if(total_name==0)
+        cout<<"\n\t\t\t\t\t Record of the name is not in the file!! \n";
+     getch();
+ }
+  void Phonebook::editData_copy(char* name,int id)
+ {
+     int flag=0;
+     fstream finout;
     finout.open("phonebook2.txt",ios::in|ios::out|ios::ate|ios::binary);
     finout.seekg(0);
     finout.read((char*)this,sizeof(*this));
@@ -456,8 +531,9 @@ void Phonebook::readData()
       {
         char chkname[20];
         strcpy(chkname,getName());
-        if (strcmp(name,capital(chkname))==0)
+        if (strcmp(name,capital(chkname))==0 && id==getIdNumber())
         {
+
               string choosePhoneNo;
             char option;
             cout<<"\n The following record will be modified:\n";
@@ -541,7 +617,7 @@ void Phonebook::readData()
                         break;
                 default:
                     cout<<"Choose number between 1 to 5";
-                    _getch();
+                    getch();
                     break;
             }
              strcpy(fullname,firstname);
@@ -558,9 +634,6 @@ void Phonebook::readData()
     {
         cout<<"\n\t\t\t\t\t\tData Modified Successfully!!";
     }
-    if(flag==0)
-        cout<<"\n\t\t\t\t\t Record of the name is not in the file!! \n";
-     _getch();
  }
  int Phonebook::totalDataEntry()
  {
@@ -576,3 +649,19 @@ void Phonebook::readData()
     fin.close();
     return totalEntry;
  }
+
+int Phonebook::getId()
+{
+    int tempId;
+    ifstream fin;
+    fin.open("phonebook2.txt",ios::binary);
+    fin.read(reinterpret_cast<char*>(this),sizeof(*this));
+    while(!fin.eof())
+    {
+        tempId=this->getIdNumber();
+        fin.read(reinterpret_cast<char*>(this),sizeof(*this));
+    }
+    fin.close();
+    tempId++;
+    return tempId;
+}
